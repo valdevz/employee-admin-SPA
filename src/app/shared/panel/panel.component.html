@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+<p>panel works!</p>
+<div *ngIf="( user | json ) != '{}'" class="container">
+  <div class="row">
+    <div class="image-container col-12 col-md-2 text-center">
+      <img width="150px" src="../../../assets/images/userProfile.jpeg" alt="">
+    </div>
+    <div class="image-container col-12 col-md-10">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <p><strong>Nombre(s):</strong> {{ user.uName }}</p>
+          <p><strong>Usuario:</strong> {{ user.userId }}</p>
+          <p><strong>Rol:</strong> {{ user.rol }}</p>
+          <p><strong>Fecha de nacimiento:</strong> {{ user.dateOfBirth | date:'mediumDate' }}</p>
+        </div>
+        <div class="col-12 col-md-6">
+          <p><strong>Apellidos:</strong> {{ user.lastname + ' ' + user.secondLastname }}</p>
+          <p><strong>Email:</strong> {{ user.emailId }}</p>
+          <p><strong>Teléfono:</strong> {{ user.phoneNo }}</p>
+        </div>
+        <div class="col-12 col-md-12">
+          <p><strong>Dirección:</strong> {{ user.address }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="disable" class="loader-container">
+  <div class="loader"></div>
+</div>

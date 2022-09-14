@@ -1,0 +1,23 @@
+<div class="login">
+  <form class="custom-form" method="post">
+    <h1>Login</h1>
+    <input
+      type="email"
+      [(ngModel)]="user"
+      name="email"
+      placeholder="Email"
+      required="required"
+    />
+    <input
+      type="password"
+      [(ngModel)]="pass"
+      name="pass"
+      placeholder="Password"
+      required="required"
+    />
+    <button [class.disable]="disable" type="submit" (click)="login()">Log in</button>
+  </form>
+</div>
+<div *ngIf="disable" class="loader-container">
+  <div class="loader"></div>
+</div>

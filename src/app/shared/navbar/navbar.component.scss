@@ -1,0 +1,27 @@
+.image-container {
+  margin: 0 6px;
+  border-radius: 35px;
+  overflow: hidden;
+  box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
+}
+#dropdownMenuLink {
+  background: none;
+  color: black;
+  border: none;
+  align-items: center;
+  display: flex;
+  &::after{
+    display: none;
+  }
+}
+
+.name-container {
+  margin-right: 6px;
+}
+.profile-container {
+  width: auto;
+  border: 1px solid #00000021;
+  border-radius: 7px;
+  margin-right: 6px;
+  padding: 6px 6px 6px 0; 
+}
