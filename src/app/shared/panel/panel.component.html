@@ -1,6 +1,9 @@
 <app-navbar></app-navbar>
 <p>panel works!</p>
-<div *ngIf="( user | json ) != '{}'" class="container">
+
+<app-search-address></app-search-address>
+
+<div *ngIf="user != null" class="container">
   <div class="row">
     <div class="image-container col-12 col-md-2 text-center">
       <img width="150px" src="../../../assets/images/userProfile.jpeg" alt="">
@@ -25,6 +28,31 @@
     </div>
   </div>
 </div>
+<div *ngIf="user === null" class="container">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Country</th>
+      <th scope="col">Area</th>
+      <th scope="col">Population</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of allUsers | keyvalue;let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        {{ user.value.lastname }}
+      </td>
+      <td>{{ user.value.userId  }}</td>
+      <td>{{ user.value._id  }}</td>
+    </tr>
+    </tbody>
+  </table>
+  
+</div>
+
+
 <div *ngIf="disable" class="loader-container">
   <div class="loader"></div>
 </div>

@@ -34,6 +34,11 @@ export class NavbarComponent implements OnInit {
     })
   }
 
+  goHomeDashboard(){
+    this.profileService.cleanProfileView()
+    this.router.navigate(['/'])
+  }
+
   getUseName(){
     let token = sessionStorage.getItem('token')
     if( token ){

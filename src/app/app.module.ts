@@ -15,6 +15,7 @@ import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { BoldLettersPipe } from './pipes/bold-letters.pipe';
 import { MyProfileComponent } from './shared/my-profile/my-profile.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SearchAddressComponent } from './shared/search-address/search-address.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SearchbarComponent,
     BoldLettersPipe,
     MyProfileComponent,
+    SearchAddressComponent,
   ],
   imports: [
     FontAwesomeModule,

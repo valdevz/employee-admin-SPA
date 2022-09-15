@@ -15,4 +15,8 @@ export class ProfileViewService {
     this.messageSource.next( message );
   }
 
+  cleanProfileView( ){
+    sessionStorage.removeItem( 'user' )
+  }
+
 }
