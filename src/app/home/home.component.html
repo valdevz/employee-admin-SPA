@@ -18,6 +18,6 @@
     <button [class.disable]="disable" type="submit" (click)="login()">Log in</button>
   </form>
 </div>
-<div *ngIf="disable" class="loader-container">
-  <div class="loader"></div>
+<div *ngIf="disable">
+  <app-loader></app-loader>
 </div>
