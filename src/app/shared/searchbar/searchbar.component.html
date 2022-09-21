@@ -1,7 +1,7 @@
 <form class="form-inline my-2 my-lg-0 d-flex">
-  <input class="form-control mr-sm-2" (focusout)="onFocusOutEvent()" (focus)="onFocus()" type="search" #yourInput (keyup)="search(yourInput.value)" placeholder="Search" aria-label="Search">
+  <input class="form-control mr-sm-2" (focusout)="onFocusOutEvent()" (focus)="onFocus()" type="search" #yourInput (keyup)="search(yourInput.value)" placeholder="Buscar" aria-label="Buscar">
   <div *ngIf="show" class="container">
-    <ul *ngIf="results.length > 0" else noResult>
+    <ul *ngIf="results.length > 0">
       <li style="cursor: pointer;" *ngFor="let item of results" (click)="selectUser(item)" [innerHTML]="item.uName+' ' + item.lastname+ ' ' + item.secondLastname | boldLetters:input">{{item.uName}} {{item.lastname}} {{item.secondLastname}}</li>
     </ul>
     <ul  *ngIf="results.length == 0">
