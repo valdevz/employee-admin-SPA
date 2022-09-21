@@ -15,7 +15,11 @@ import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { BoldLettersPipe } from './pipes/bold-letters.pipe';
 import { MyProfileComponent } from './shared/my-profile/my-profile.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { SearchAddressComponent } from './shared/search-address/search-address.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { GoogleMapSeachbar } from './shared/googleMap-searchbar/googleMap-searchbar';
+import { ToastrModule } from 'ngx-toastr';
+import { LoaderComponent } from './shared/loader/loader.component';
+
 
 
 @NgModule({
@@ -27,11 +31,20 @@ import { SearchAddressComponent } from './shared/search-address/search-address.c
     SearchbarComponent,
     BoldLettersPipe,
     MyProfileComponent,
-    SearchAddressComponent,
+    GoogleMapSeachbar,
+    LoaderComponent,
   ],
   imports: [
     FontAwesomeModule,
     MatSnackBarModule,
+    GoogleMapsModule,
+    ToastrModule.forRoot({
+      preventDuplicates: false,
+      progressBar: true,
+      countDuplicates: true,
+      extendedTimeOut: 3000,
+      positionClass: 'toast-bottom-right',
+    }),
     FormsModule,
     BrowserModule,
     AppRoutingModule,

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  API_URL: 'http://localhost:4000/v1/api/' 
+  API_URL    : 'http://localhost:4000/v1/api/', 
+  GOOGLE_API : 'https://maps.googleapis.com/maps/api/'
 
 };
 
