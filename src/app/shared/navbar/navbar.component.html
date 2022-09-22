@@ -1,24 +1,38 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" style="cursor: pointer;" (click)="goHomeDashboard()">
-    <img src="../../../assets/images/logo.jpeg" style="margin-left: 20px;" width="80" height="80" alt="">
-  </a>
-  <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button> -->
-  <div class="collapse navbar-collapse float-right" id="navbarSupportedContent">
-    <ul class=" float-right navbar-nav mr-auto">
-    </ul>
-  </div>
-  <div class="profile-container container d-flex justify-content-end dropdown">
-    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <div class="image-container"><img width="33px" src="../../../assets/images/userProfile.jpeg" alt=""></div>
-      <div class="name-container">{{userName}}</div>
-      <fa-icon [icon]="arrowDown"></fa-icon>
+  <div class="container">
+    <fa-icon class="sidebarButton" (click)="toogleSidebar()" [icon]="barMenu" ></fa-icon>
+    <a class="navbar-brand" style="cursor: pointer;" (click)="goHomeDashboard()">
+      <img src="../../../assets/images/logo.jpeg" style="margin-left: 20px;" width="80" height="80" alt="">
     </a>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-      <a class="dropdown-item" (click)="goToProfile()" >Perfil</a>
-      <a class="dropdown-item" (click)="logOut()">Cerrar sesión</a>
+    <div class="profile-container container d-flex justify-content-end dropdown">
+      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="image-container"><img width="33px" src="../../../assets/images/userProfile.jpeg" alt=""></div>
+        <div class="name-container">{{userName}}</div>
+        <fa-icon [icon]="arrowDown"></fa-icon>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" (click)="goToProfile()" >Perfil</a>
+        <a class="dropdown-item" (click)="logOut()">Cerrar sesión</a>
+      </div>
     </div>
+    <app-searchbar></app-searchbar>
   </div>
-  <app-searchbar></app-searchbar>
+</nav>
+<nav id="sidebar" [ngClass]="{'active': showSidebar}" >
+  <div class="sidebar-header">
+    <button class="close-button" type="button" (click)="toogleSidebar()">
+      <fa-icon class="close-asset" [icon]="faXmark"></fa-icon>
+    </button>
+  </div>
+  <ul class="admin-list components">
+      <li>
+          <a routerLink="/suburbs">Colonias</a>
+      </li>
+      <li>
+          <a routerLink="/employee-rols">Posiciones</a>
+      </li>
+      <li>
+          <a routerLink="/support-jobs" >Trabajos (de apoyo)</a>
+      </li>
+  </ul>
 </nav>
