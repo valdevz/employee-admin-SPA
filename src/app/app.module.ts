@@ -19,6 +19,10 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { GoogleMapSeachbar } from './shared/googleMap-searchbar/googleMap-searchbar';
 import { ToastrModule } from 'ngx-toastr';
 import { LoaderComponent } from './shared/loader/loader.component';
+import { SuburbsComponent } from './auth/suburbs/suburbs.component';
+import { SupportJobsComponent } from './auth/support-jobs/support-jobs.component';
+import { EmployeeRolsComponent } from './auth/employee-rols/employee-rols.component';
+import { EditUserComponent } from './auth/edit-user/edit-user.component';
 
 
 
@@ -33,6 +37,10 @@ import { LoaderComponent } from './shared/loader/loader.component';
     MyProfileComponent,
     GoogleMapSeachbar,
     LoaderComponent,
+    SuburbsComponent,
+    SupportJobsComponent,
+    EmployeeRolsComponent,
+    EditUserComponent,
   ],
   imports: [
     FontAwesomeModule,
