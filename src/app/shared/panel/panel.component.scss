@@ -5,7 +5,7 @@
   }
 }
 
-.container {
+.main.container {
   padding: 36px 12px;
   background-color: white;
   border-radius: 16px;
@@ -52,7 +52,8 @@
 }
 
 @media (max-width: 575px) {
-  .container {
-    max-width: 92%;;
+  .main.container {
+    max-width: 92%;
+    margin-bottom: 71px;
   }
 }

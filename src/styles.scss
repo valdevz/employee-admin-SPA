@@ -40,7 +40,13 @@ $empleadosAdmin-theme: mat.define-light-theme((
 html,
 body {
   background-color: #ecf0f3 !important;
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+  min-height:100vh; 
+  margin:0; 
+  position:relative;
+  padding-bottom: 1px;
 }
+
 
 nav.bg-light {
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
@@ -90,4 +96,3 @@ h1 {
   box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;
   cursor: pointer;
 }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

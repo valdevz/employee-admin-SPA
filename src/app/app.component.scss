@@ -1,7 +1,10 @@
 footer {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   width: 100%;
   background-color: white;
-  padding-top: 12px;;
+  padding-top: 12px;
+  .footer-bottom {
+    margin-bottom: 0;
+  }
 }
