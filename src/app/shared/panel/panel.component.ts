@@ -4,6 +4,7 @@ import { UsersService } from '../../services/shared/users.service'
 import { UserInterface } from './../../interface/user'
 import { SearchService } from 'src/app/services/shared/search.service';
 import { faArrowRight, faArrowLeft, faA, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { LoaderService } from 'src/app/services/shared/loader.service';
 
 @Component({
   selector: 'app-panel',
@@ -11,7 +12,6 @@ import { faArrowRight, faArrowLeft, faA, IconDefinition } from '@fortawesome/fre
   styleUrls: ['./panel.component.scss']
 })
 export class PanelComponent implements OnInit {
-  disable: boolean = false;
   rightArrow: IconDefinition = faArrowRight;
   leftArrow: IconDefinition = faArrowLeft;
   prevPage: boolean = false;
@@ -19,7 +19,8 @@ export class PanelComponent implements OnInit {
   sizePages: number = 0;
   constructor( private profileView: ProfileViewService, 
                private usersService: UsersService,
-               private searchService: SearchService ) {
+               private searchService: SearchService,
+               private loaderService: LoaderService, ) {
   } 
   p: number = 1;
   serviceSearchBar: string = 'google';
@@ -34,8 +35,6 @@ export class PanelComponent implements OnInit {
       this.user = newUser;
       console.log('hay usuario asignado? ', this.isUserAsigned())
     });
-    console.log('gggg')
-    console.log(this.isUserAsigned())
     if( !this.isUserAsigned() ){
       let usr = sessionStorage.getItem( 'user' );
       if ( usr != null ) {
@@ -51,14 +50,12 @@ export class PanelComponent implements OnInit {
   }
 
   async nextPageFunc(){
-    this.disable = true;
     let loaded = await this.showHomeDashboard((this.page*10), 10)
     this.page += 1;
     if(this.page > 0) this.prevPage = true;
     if(this.page == this.sizePages) this.nextPage = false;
   }
   async prevPageFunc(){
-    this.disable = true;
     this.page -= 1;
     let loaded = await this.showHomeDashboard( ( ( this.page - 1 ) * 10 ), 10 )
     if(this.page == 1) this.prevPage = false;
@@ -74,6 +71,7 @@ export class PanelComponent implements OnInit {
     else return true
   }
   async showHomeDashboard(skip: number, limit: number): Promise<any>{
+    this.loaderService.loaderStatus( true )
     let loaded = await new Promise( ( resolve, reject ) => {
       this.usersService.getAllUsers( skip, limit ).subscribe({
         next: res => {
@@ -85,7 +83,6 @@ export class PanelComponent implements OnInit {
           })
           this.sizePages = Math.floor(this.collectionSize/10)
           this.allUsers = res;
-          this.disable = false;
           return resolve( this.allUsers )
         },
         error: err => {
@@ -96,18 +93,17 @@ export class PanelComponent implements OnInit {
 
     })
     
-    
-    console.log(loaded)
+    this.loaderService.loaderStatus( false )
     return loaded
   }
 
   selectUser(userId: string){
-    this.disable = true;
+    this.loaderService.loaderStatus( true )
     this.searchService.searchById( userId ).subscribe({
       next: user => {
         if( user.user != null){
           this.profileView.changeProfile( user.user )
-          this.disable = false;
+          this.loaderService.loaderStatus( false )
         }
       },
       error: err => {

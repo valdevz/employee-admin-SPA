@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs/internal/Subject';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 import { ProfileViewService } from 'src/app/services/auth/profile-view.service';
@@ -14,6 +14,7 @@ export class SearchbarComponent implements OnInit, OnDestroy  {
   results: any[] = [];
   input: string = '';
   keyPress$ = new Subject();
+  @ViewChild('yourInput') inputName: any; 
 
   constructor( private searchService: SearchService,
                private profileView : ProfileViewService ) {
@@ -34,6 +35,7 @@ export class SearchbarComponent implements OnInit, OnDestroy  {
    }
 
   selectUser( user:Object ){
+    this.inputName.nativeElement.value = ''
     this.profileView.changeProfile( user )
   }
    onFocus(){

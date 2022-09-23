@@ -3,6 +3,7 @@ import { Router } from "@angular/router"
 import { AuthService } from '../services/auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { LoaderService } from '../services/shared/loader.service';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,7 @@ export class HomeComponent implements OnInit  {
   constructor( 
     private authService: AuthService,
     private _snackBar: MatSnackBar,
+    private loaderService: LoaderService,
     private router: Router,
     private jwt: JwtHelperService ) {
       let tokn = sessionStorage.getItem( 'token' )
@@ -26,9 +28,11 @@ export class HomeComponent implements OnInit  {
   login() {
     const user = { user: this.user, pass: this.pass };
     this.disable = true;
+    this.loaderService.loaderStatus( true );
     this.authService.login( user ).subscribe({ 
       next: res => {
-        this.disable = false;
+        console.log('termina la carga')
+        this.loaderService.loaderStatus( false );
         sessionStorage.setItem( 'token', res.token )
         this.router.navigate( ['panel'] );
       },

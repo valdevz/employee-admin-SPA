@@ -47,10 +47,11 @@
   position: absolute;
   width: 100%;
   height: 100%;
+  max-width: 556px;;
   top: 0;
   left: -100%;
   z-index: 1;
-  background-color: red;
+  background-color: white;
   .sidebar-header {
     display: flex;
     justify-content: end;
@@ -61,7 +62,7 @@
       padding: 5px 11px;
     }
     .close-asset {
-      color: #ffffffdf;
+      color: #212529;
       scale: 2;
       display: block;
     }
@@ -70,17 +71,17 @@
     padding-left: 0;
     margin: 0 8px;
     li:last-child {
-      border-bottom: 1px solid #ffffffdf;
+      border-bottom: 1px solid #0000000d;
     }
     li {
       &:hover, &:active {
-        background-color: #00000019;
+        background-color: #0000000d;
       }
-      border-top: 1px solid #ffffffdf;
+      border-top: 1px solid #0000000d;
       list-style: none;
       padding: 12px 12px 12px 2.5rem;
       a {
-        color: #ffffffdf;
+        color: #212529;
       }
     }
   }

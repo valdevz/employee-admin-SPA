@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth/auth.service';
+import { LoaderService } from './services/shared/loader.service';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,9 @@ import { AuthService } from './services/auth/auth.service';
 export class AppComponent {
   disable: boolean = false;
   logged:  boolean = false;
-  title = 'empleadosAdmin';
+  title: string = 'empleadosAdmin';
   year: number = new Date().getFullYear();
-  constructor(private authService: AuthService){
+  constructor( private authService: AuthService ){
     this.authService.signInStatus$.subscribe({
       next: res => {
         if(typeof res == 'boolean') this.logged = res
