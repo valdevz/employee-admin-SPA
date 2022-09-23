@@ -5,6 +5,13 @@
   }
 }
 
+.container {
+  padding: 36px 12px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
 .disable {
   pointer-events: none;
 }
@@ -42,4 +49,10 @@
 }
 .pagination .visibility{
   font-weight: 600;
+}
+
+@media (max-width: 575px) {
+  .container {
+    max-width: 92%;;
+  }
 }

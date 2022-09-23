@@ -28,7 +28,6 @@ export class NavbarComponent implements OnInit {
   }
 
   async goToProfile(){
-    // this.profileView.changeProfile()
     this.searchService.searchById( this.userName ).subscribe({
       next: res => {
         this.profileService.changeProfile( res.user )

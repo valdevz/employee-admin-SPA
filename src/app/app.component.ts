@@ -10,6 +10,7 @@ export class AppComponent {
   disable: boolean = false;
   logged:  boolean = false;
   title = 'empleadosAdmin';
+  year: number = new Date().getFullYear();
   constructor(private authService: AuthService){
     this.authService.signInStatus$.subscribe({
       next: res => {
