@@ -1,0 +1,38 @@
+<section class="main container bg-white rounded p-3">
+  <header class="mb-4">
+    <div class="d-flex justify-content-between">
+      <div class="title-container justify-content-end align-items-center"><h2 class="h2">{{title}}</h2></div>
+      <div class="actions d-flex justify-content-end align-items-center">
+        <input class="rounded" type="text" placeholder="Buscar">
+        <button type="button" class="btn btn-info text-white">Nuevo</button>
+    </div>
+    </div>
+  </header>
+  <div class="">
+    <div *ngIf="obj.length == 0" class="h2 text-center no-results">Sin resultados</div>
+    <ul class="list-group rounded-0" *ngFor="let item of obj | keyvalue; let i = index">
+      <li class="list-group-item align-items-center d-flex justify-content-between">
+        <input 
+          #field
+          (keyup)="keyup(field.value)"
+          *ngIf="editStatus && indexT == i" 
+          class="rounded" 
+          type="text" 
+          style="padding: 6px 0 6px 4px;position: relative;left: -1px;" 
+          [ngModel]="item.value['name']"
+        >
+        <p *ngIf="indexT != i" style="margin:0">{{item.value['name'] | capitalizeFirst}}</p>
+        <div  class="buttons">
+          <button *ngIf="indexT != i" [ngClass]="{'disabled': editStatus}" (click)="editFunc( item.value['_id'], i )" style="margin-right: 12px;" type="button" class="btn btn-outline-primary"><fa-icon [icon]="edit"></fa-icon></button>
+          <button *ngIf="indexT != i" [ngClass]="{'disabled': editStatus}" (click)="deleteFunc( 'delete', item.value['_id'], i )" type="button" class="btn btn-outline-danger"><fa-icon [icon]="delete"></fa-icon></button>
+          <button *ngIf="editStatus && indexT == i" (click)="saveFunc('edit', item.value['_id'], i)" style="margin-right: 12px;" type="button" class="btn btn-outline-success"><fa-icon [icon]="done"></fa-icon></button>
+          <button *ngIf="editStatus && indexT == i" (click)="editFunc( item.value['_id'], i )" type="button" class="btn btn-outline-danger"><fa-icon [icon]="cancel"></fa-icon></button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<button [swal]="['Oops!', 'This is not implemented yet :/', 'warning']">
+  Do it!
+</button>
