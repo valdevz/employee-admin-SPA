@@ -23,6 +23,10 @@ import { SuburbsComponent } from './auth/suburbs/suburbs.component';
 import { SupportJobsComponent } from './auth/support-jobs/support-jobs.component';
 import { EmployeeRolsComponent } from './auth/employee-rols/employee-rols.component';
 import { EditUserComponent } from './auth/edit-user/edit-user.component';
+import { CustomTableComponent } from './shared/custom-table/custom-table.component';
+import { CapitalizeFirstPipe } from './pipes/capitalize-first.pipe';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 
 
 
@@ -41,11 +45,14 @@ import { EditUserComponent } from './auth/edit-user/edit-user.component';
     SupportJobsComponent,
     EmployeeRolsComponent,
     EditUserComponent,
+    CustomTableComponent,
+    CapitalizeFirstPipe,
   ],
   imports: [
     FontAwesomeModule,
     MatSnackBarModule,
     GoogleMapsModule,
+    SweetAlert2Module.forRoot(),
     ToastrModule.forRoot({
       preventDuplicates: false,
       progressBar: true,
