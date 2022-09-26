@@ -38,6 +38,22 @@ export class SweetAlertMessageService {
     return result;
   }
 
+  async input( ): Promise<SweetAlertResult> {
+    const result: SweetAlertResult = await Swal.fire({
+      input: 'text',
+      inputLabel: 'Añadir nuevo elemento',
+      inputPlaceholder: 'Type your message here...',
+      inputAttributes: {
+        'aria-label': 'Type your message here'
+      },
+      showCancelButton: true,
+      inputValidator: ( input ) => {
+        return new Promise( ( resolve ) => input.trim().length < 1 ? resolve('Debes insertar un valor.') : resolve(''))
+      }
+    })
+    return result;
+  }
+
   alert(type: SweetAlertIcon, title: string, text?: string) {
     Swal.fire({
       icon: type,
