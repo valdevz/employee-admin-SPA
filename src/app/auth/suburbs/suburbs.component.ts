@@ -5,9 +5,9 @@ import { LoaderService } from 'src/app/services/shared/loader.service';
 import { SweetAlertMessageService } from 'src/app/services/shared/sweet-alert-message.service';
 
 interface request {
-  action: string,
-  id: string,
-  index: number,
+  action?: string,
+  id?: string,
+  index?: number,
   name?: string
 }
 
@@ -39,7 +39,7 @@ export class SuburbsComponent implements OnInit {
     })
   }
 
-  deleteSububr( payload: object ): Promise<any>{
+  deleteSububr( payload: object ): Promise<any> {
     return new Promise( ( resolve, reject ) => {
       this.suburbsService.deleteSuburb( payload ).subscribe({
         next: res => {
@@ -56,7 +56,7 @@ export class SuburbsComponent implements OnInit {
     })
   }
 
-  editSuburb( obj: request ): Promise<any>{
+  editSuburb( obj: request ): Promise<any> {
     return new Promise( ( resolve, reject ) => {
       const payload = { id: obj.id, name: obj.name }
       this.suburbsService.editSuburb( payload ).subscribe({
@@ -75,6 +75,24 @@ export class SuburbsComponent implements OnInit {
     })
   }
 
+  createSuburb( payload: request): Promise<any> {
+    return new Promise( ( resolve, reject ) => {
+      this.suburbsService.createSuburb( payload ).subscribe({
+        next: res => {
+          if(res.code == 201 || res.code == 200){
+            return resolve( { status: true, message: 'Elemento creado correctamente.' } )
+          }else {
+            return resolve( { status: false, message: 'No se pudo crear el elemento.' } )
+          }
+        },
+        error: err => {
+          console.log(err)
+          reject( err )
+        }
+      })
+    } );
+  }
+
   async request( obj: request ){
     let res ;
     if (obj.action ==  'delete' ){
@@ -82,6 +100,8 @@ export class SuburbsComponent implements OnInit {
       res = await this.deleteSububr( payload )
     }else if( obj.action ==  'edit' ){
       res = await this.editSuburb( obj )
+    } else if( obj.action ==  'create' ){
+      res = await this.createSuburb( obj )
     }
     if( res.status == true ){
       this.sweetAlertSvc.toast('success', res.message)

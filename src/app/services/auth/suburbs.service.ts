@@ -22,4 +22,8 @@ export class SuburbsService {
     return this.http.delete( environment.API_URL + 'suburbs', {body: payload} )
   }
 
+  createSuburb( payload: object ): Observable<any> {
+    return this.http.post( environment.API_URL + 'suburbs', payload )
+  }
+
 }

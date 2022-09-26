@@ -29,6 +29,16 @@ export class CustomTableComponent implements OnInit {
     this.indexT = this.editStatus ? index : null;
   }
 
+  launchModal(){
+    this.sweetAlertSvc.input()
+      .then(res => { 
+        const action = 'create';
+        if ( res.isConfirmed && res.value ){
+          this.action.emit( {action, name: res.value} ); 
+        }
+      })
+  }
+
   keyup( e: string ){
     this.editedField = e;
   }

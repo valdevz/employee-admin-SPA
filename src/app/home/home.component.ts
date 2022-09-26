@@ -31,18 +31,14 @@ export class HomeComponent implements OnInit  {
     this.loaderService.loaderStatus( true );
     this.authService.login( user ).subscribe({ 
       next: res => {
-        console.log('termina la carga')
         this.loaderService.loaderStatus( false );
         sessionStorage.setItem( 'token', res.token )
         this.router.navigate( ['panel'] );
       },
       error: err => {
-        this._snackBar.open(err.error)
-        this.disable = false;
+        this.loaderService.loaderStatus( false );
+        this._snackBar.open('Error desconocido ):')
         setTimeout( () => this._snackBar.dismiss(), 4000 )
-      },
-      complete: () => {
-        console.log( 'complete' )
       }
   });
   }
