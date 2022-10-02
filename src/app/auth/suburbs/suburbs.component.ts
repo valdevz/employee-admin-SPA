@@ -19,7 +19,6 @@ interface request {
 export class SuburbsComponent implements OnInit {
   suburbs: Array<any> = [];
   title: string = 'Colonias';
-  someSubscription: any;
   editedField: string | undefined ;
 
   constructor( private suburbsService: SuburbsService,
@@ -114,7 +113,7 @@ export class SuburbsComponent implements OnInit {
   reloadComponent() {
     const currentRoute = this.router.url;
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => this.router.navigate([currentRoute])); 
-}
+  }
 
   ngOnInit(): void {
   }
