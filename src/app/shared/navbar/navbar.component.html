@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <fa-icon class="sidebarButton" (click)="toogleSidebar()" [icon]="barMenu" ></fa-icon>
+    <fa-icon *ngIf="currentRol == 'ADMIN' || currentRol == 'EDITOR'" class="sidebarButton" (click)="toogleSidebar()" [icon]="barMenu" ></fa-icon>
     <a class="navbar-brand" style="cursor: pointer;" (click)="goHomeDashboard()">
       <img src="../../../assets/images/logo.jpeg" style="margin-left: 20px;" width="80" height="80" alt="">
     </a>
@@ -18,7 +18,7 @@
     <app-searchbar></app-searchbar>
   </div>
 </nav>
-<nav id="sidebar" [ngClass]="{'active': showSidebar}" >
+<nav *ngIf="currentRol == 'ADMIN' || currentRol == 'EDITOR'" id="sidebar" [ngClass]="{'active': showSidebar}" >
   <div class="sidebar-header">
     <button class="close-button" type="button" (click)="toogleSidebar()">
       <fa-icon class="close-asset" [icon]="faXmark"></fa-icon>

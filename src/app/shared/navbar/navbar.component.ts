@@ -18,11 +18,14 @@ export class NavbarComponent implements OnInit {
   barMenu: IconDefinition = faBars;
   faXmark : IconDefinition = faXmark;
   showSidebar: boolean = false;
+  currentRol: string = ''
   constructor( private searchService: SearchService, 
               private jwt: JwtHelperService,
               private profileService: ProfileViewService,
               private router: Router,
-              private auth: AuthService ) {}
+              private auth: AuthService ) {
+                this.currentRol = this.auth.getCurrentRol()
+              }
   ngOnInit(): void {
     this.getUseName()
   }

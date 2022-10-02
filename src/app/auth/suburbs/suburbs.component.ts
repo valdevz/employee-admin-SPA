@@ -1,5 +1,5 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { SuburbsService } from 'src/app/services/auth/suburbs.service';
 import { LoaderService } from 'src/app/services/shared/loader.service';
 import { SweetAlertMessageService } from 'src/app/services/shared/sweet-alert-message.service';
@@ -33,6 +33,7 @@ export class SuburbsComponent implements OnInit {
         this.loaderService.loaderStatus( false )
       },
       error: err => {
+        this.loaderService.loaderStatus( false )
         console.log(err)
       }
     })
@@ -86,7 +87,7 @@ export class SuburbsComponent implements OnInit {
         },
         error: err => {
           console.log(err)
-          reject( err )
+          resolve( err )
         }
       })
     } );

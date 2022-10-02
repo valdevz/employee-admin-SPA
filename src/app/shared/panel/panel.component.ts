@@ -35,6 +35,7 @@ export class PanelComponent implements OnInit {
   currentRol: string = '';
   ngOnInit(): void {
     this.currentRol = this.authService.getCurrentRol()
+    console.log(this.currentRol)
     this.profileView.userChanges$.subscribe( ( newUser: any ) => {
       this.user = newUser;
     });
