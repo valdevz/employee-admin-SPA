@@ -31,6 +31,7 @@
       <th scope="col">Usuario</th>
       <th scope="col">Nombre</th>
       <th scope="col">Apellido</th>
+      <th *ngIf="currentRol == 'ADMIN' || 'EDITOR'" scope="col">Rol</th>
     </tr>
     </thead>
     <tbody>
@@ -39,6 +40,7 @@
       <td class="link-info" (click)="selectUser(user.value.userId)">{{ user.value.userId  }}</td>
       <td>{{ user.value.uName }}</td>
       <td>{{ user.value.lastname  }}</td>
+      <td *ngIf="currentRol == 'ADMIN' || 'EDITOR'">{{ user.value.rol  }}</td>
     </tr>
     </tbody>
   </table>

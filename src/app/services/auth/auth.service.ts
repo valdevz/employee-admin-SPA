@@ -16,9 +16,15 @@ export class AuthService {
     signInStatus$ = this.messageStatus.asObservable();
 
     public isAuthenticated(): boolean {
-      const token = sessionStorage.getItem( 'token' ) || undefined;+
+      const token = sessionStorage.getItem( 'token' ) || undefined;
       this.messageStatus.next( !this.jwtHelper.isTokenExpired( token ) );
       return !this.jwtHelper.isTokenExpired( token );
+    }
+
+    public getCurrentRol(): string {
+      const token = sessionStorage.getItem( 'token' ) || undefined;
+      let rol =  this.jwtHelper.decodeToken( token ).rol;
+      return typeof rol == 'string' ? rol : ''; 
     }
 
     login( user: any ): Observable<any> {

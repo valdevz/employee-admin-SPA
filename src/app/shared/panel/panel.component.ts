@@ -5,6 +5,7 @@ import { UserInterface } from './../../interface/user'
 import { SearchService } from 'src/app/services/shared/search.service';
 import { faArrowRight, faArrowLeft, faA, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { LoaderService } from 'src/app/services/shared/loader.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-panel',
@@ -20,7 +21,8 @@ export class PanelComponent implements OnInit {
   constructor( private profileView: ProfileViewService, 
                private usersService: UsersService,
                private searchService: SearchService,
-               private loaderService: LoaderService, ) {
+               private loaderService: LoaderService, 
+               private authService: AuthService ) {
   } 
   p: number = 1;
   serviceSearchBar: string = 'google';
@@ -30,10 +32,11 @@ export class PanelComponent implements OnInit {
   user: UserInterface | null = null;
   allUsers:UserInterface | null = null;
   pagination: number = 0;
+  currentRol: string = '';
   ngOnInit(): void {
+    this.currentRol = this.authService.getCurrentRol()
     this.profileView.userChanges$.subscribe( ( newUser: any ) => {
       this.user = newUser;
-      console.log('hay usuario asignado? ', this.isUserAsigned())
     });
     if( !this.isUserAsigned() ){
       let usr = sessionStorage.getItem( 'user' );

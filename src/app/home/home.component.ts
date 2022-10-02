@@ -34,12 +34,16 @@ export class HomeComponent implements OnInit  {
         this.loaderService.loaderStatus( false );
         sessionStorage.setItem( 'token', res.token )
         this.router.navigate( ['panel'] );
+        this.disable = false;
       },
       error: err => {
+        this.disable = false;
+        let message = err.error;
         this.loaderService.loaderStatus( false );
-        this._snackBar.open('Error desconocido ):')
-        setTimeout( () => this._snackBar.dismiss(), 4000 )
-      }
+        if(message != null) this._snackBar.open(err.error, ' ):')
+        else this._snackBar.open('Error desconocido ):')
+        setTimeout( () => this._snackBar.dismiss(), 5000 )
+      },
   });
   }
 
