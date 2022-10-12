@@ -3,25 +3,41 @@
     <div class="image-container col-12 col-md-3 text-center">
       <img width="150px" src="../../../assets/images/userProfile.jpeg" alt="">
     </div>
-    <div class="image-container col-12 col-md-9">
+    <div class="data-container col-12 col-md-9">
       <div class="row">
         <div class="col-12 col-md-6">
-          <p><strong>Nombre(s):</strong> {{ user.uName }}</p>
+          <p *ngIf="currentRol != 'ADMIN' || !isEditing"><strong>Nombre(s):</strong> {{ user.uName }}</p>
+          <p *ngIf="currentRol == 'ADMIN' && isEditing"><strong>Nombre(s):</strong><input #name ngModel="{{user.uName}}" type="text"></p>
           <p><strong>Usuario:</strong> {{ user.userId }}</p>
-          <p><strong>Rol:</strong> {{ user.rol }}</p>
-          <p><strong>Fecha de nacimiento:</strong> {{ user.dateOfBirth | date:'mediumDate' }}</p>
+          <p *ngIf="currentRol != 'ADMIN' || !isEditing"><strong>Rol:</strong> {{ user.rol }}</p>
+          <p *ngIf="currentRol == 'ADMIN' && isEditing"><strong>Rol:</strong><input #rol ngModel="{{user.rol}}" type="text"></p>
+          <p *ngIf="currentRol != 'ADMIN' || !isEditing"><strong>Fecha de nacimiento:</strong> {{ user.dateOfBirth | date:'mediumDate' }}</p>
+          <p *ngIf="currentRol == 'ADMIN' && isEditing"><strong>Fecha de nacimiento:</strong><input #dateOfBirth [valueAsDate]="user.dateOfBirth" ngModel="{{user.dateOfBirth | date:'dd/M/yyyy'}}" type="date"></p>
         </div>
         <div class="col-12 col-md-6">
-          <p><strong>Apellidos:</strong> {{ user.lastname + ' ' + user.secondLastname }}</p>
-          <p><strong>Email:</strong> {{ user.emailId }}</p>
-          <p><strong>Teléfono:</strong> {{ user.phoneNo }}</p>
+          <p *ngIf="currentRol != 'ADMIN' || !isEditing"><strong>Apellidos:</strong> {{ user.lastname }}</p>
+          <p *ngIf="currentRol == 'ADMIN' && isEditing"><strong>Apellidos:</strong><input #lastnames *ngIf="currentRol == 'ADMIN' || currentRol == 'EDITOR' && isEditing" ngModel="{{ user.lastname }}" type="text"></p>
+
+
+          <p *ngIf="!isEditing"><strong>Email:</strong> {{ user.emailId }}</p>
+          <p *ngIf="currentRol != 'USER' && isEditing"><strong>Email:</strong><input #email *ngIf="currentRol == 'ADMIN' || currentRol == 'EDITOR' && isEditing" ngModel="{{user.emailId}}" type="text"></p>
+          <p *ngIf="!isEditing"><strong>Teléfono:</strong> {{ user.phoneNo }}</p>
+          <p *ngIf="currentRol != 'USER' && isEditing"><strong>Teléfono:</strong><input #phone *ngIf="currentRol == 'ADMIN' || currentRol == 'EDITOR' && isEditing" ngModel="{{user.phoneNo}}" type="text"></p>
         </div>
         <div class="col-12 col-md-12">
           <p><strong>Dirección:</strong> {{ user.address }}</p>
+          <!-- <input #address *ngIf="currentRol == 'ADMIN' || currentRol == 'EDITOR' && isEditing" ngModel="{{user.address}}" type="text"> -->
         </div>
       </div>
     </div>
   </div>
+  <section class="editor-container d-flex justify-content-end">
+    <div *ngIf="currentRol == 'ADMIN' || currentRol == 'EDITOR'" class="actions-container">
+      <button *ngIf="!isEditing" (click)="editUser( 'edit' )" class="btn btn-primary" type="button">Editar</button>
+      <button *ngIf="isEditing" (click)="editUser( 'cancel' )" class="btn btn-danger" type="button">Cancelar</button>
+      <button *ngIf="isEditing" (click)="editUser( 'save' )" class="btn btn-success" type="button">Guardar</button>
+    </div>
+  </section>
 </div>
 <div *ngIf="user === null" class="main container" >
   <table class="table table-striped">
